@@ -6,12 +6,16 @@ import Speach1 from "./people/speach1";
 import Speach2 from "./people/speach2";
 import Nonquests from "./Quests/NonQuests";
 import Goblin from "./people/Goblin";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
     counter: 0,
     qCounter: 0,
     random: 0
+  };
+  increment = () => {
+    this.props.dispatch({ type: "INCREMENT" });
   };
   correctAnswer = () => {
     this.setState({ counter: this.state.counter + 1 });
@@ -29,7 +33,7 @@ class App extends Component {
   render() {
     let char1 = <Melina />;
     let char2 = <KingJames />;
-    if (this.state.counter >= 4) {
+    if (this.props.count >= 4) {
       char2 = <Goblin />;
     }
     return (
@@ -45,7 +49,7 @@ class App extends Component {
 
           <div className="people1">{char1}</div>
           <div className="continue">
-            <button className="button" onClick={this.counter}>
+            <button className="button" onClick={this.increment}>
               press to continue
             </button>
           </div>
@@ -62,4 +66,9 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    count: state.count
+  };
+}
+export default connect(mapStateToProps)(App);

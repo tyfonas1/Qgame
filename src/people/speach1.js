@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./people.css";
 import Nonquests from "../Quests/NonQuests";
-
+import { connect } from "react-redux";
 class Speach1 extends Component {
   state = { answer: 0, value: "Select", vb: 0 };
 
@@ -20,28 +20,28 @@ class Speach1 extends Component {
   render() {
     let quests = "How can i help you...My King...";
 
-    if (this.props.qCounter === 1) {
+    if (this.props.count === 1) {
       quests = "";
     }
-    if (this.props.qCounter === 2) {
+    if (this.props.count === 2) {
       quests = "Ofcourse My King! On my way...";
     }
-    if (this.props.qCounter === 3) {
+    if (this.props.count === 3) {
       quests = "";
     }
-    if (this.props.qCounter === 4) {
+    if (this.props.count === 4) {
       quests = "";
     }
-    if (this.props.qCounter === 5) {
+    if (this.props.count === 5) {
       quests = "None of your bussiness!";
     }
-    if (this.props.qCounter === 6) {
+    if (this.props.count === 6) {
       quests = "";
     }
-    if (this.props.qCounter >= 7) {
+    if (this.props.count >= 7) {
       quests = "";
     }
-    if (this.props.qCounter >= 7) {
+    if (this.props.count >= 7) {
       quests = " ";
       if (this.props.randQ === 1) {
       }
@@ -79,5 +79,10 @@ class Speach1 extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    count: state.count
+  };
+}
 
-export default Speach1;
+export default connect(mapStateToProps)(Speach1);

@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import "./people.css";
-
+import { connect } from "react-redux";
 class Speach2 extends Component {
   state = {};
 
   render() {
     let quests = "";
 
-    if (this.props.qCounter === 1) {
+    if (this.props.count === 1) {
       quests = "I need you to clear the woods";
     }
-    if (this.props.qCounter === 2) {
+    if (this.props.count === 2) {
       quests = "";
     }
-    if (this.props.qCounter === 3) {
+    if (this.props.count === 3) {
       quests = "Be carefull...";
     }
-    if (this.props.qCounter === 4) {
+    if (this.props.count === 4) {
       quests = "...Who's there?!";
     }
-    if (this.props.qCounter === 5) {
+    if (this.props.count === 5) {
       quests = "";
     }
-    if (this.props.qCounter === 6) {
+    if (this.props.count === 6) {
       quests = "Hmmm...Ok then...Answer me this!";
     }
-    if (this.props.qCounter >= 7) {
+    if (this.props.count >= 7) {
       quests = " ";
       if (this.props.randQ === 1) {
       }
@@ -50,5 +50,9 @@ class Speach2 extends Component {
     );
   }
 }
-
-export default Speach2;
+function mapStateToProps(state) {
+  return {
+    count: state.count
+  };
+}
+export default connect(mapStateToProps)(Speach2);
